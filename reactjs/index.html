@@ -1,0 +1,68 @@
+<!-- 
+    created by: Lê Hoàng Thạch
+    created date: 26/08/2024
+    description: reactjs
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- lesson 1 -->
+    <!-- Bản chất reactjs -->
+    <!-- react chúng ta có thể sử dụng link thay cho cài đặt npm -->
+    <!-- npm là gì là nơi lưu các sản phẩm  -->
+    <!-- còn git là nơi lưu trữ source code  -->
+    <!-- unpgk được hiểu như là ví dụ code bên Mỹ muốn về Việt Nam nó dowload cả nữa vòng trái đất rất là lâu
+         nên unpgk nơi chứ các mấy chủ của các nước giúp các bạn tải nhanh hơn-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        /*
+            lesson 2: react.createElement và DOM
+            react.createElement() trả về chúng ta 1 đối  tượng là React element
+            document.createElement() trả về chúng ta 1 đối tượng là DOM element 
+        */
+        //DOM
+        const titleName = document.createElement('h1');
+        const h1Dom = document.createElement('h1');
+        h1Dom.title = 'hello';
+        titleName.title = 'reactjs'
+        h1Dom.className = 'heading';
+        h1Dom.innerText = 'hello world';
+        titleName.innerText = 'Bản chất của reactjs'
+        document.body.appendChild(titleName);
+        document.body.appendChild(h1Dom);
+        //react
+        // cú pháp React.createElement(type, props, children, children n); sau children  đều là đối số children 
+        // và children cũng là 1 props bạn có thể xem bằng cách console.log
+        const h1React = React.createElement('h1', {title: 'hello', className: 'heading'}, 'hello world');
+        console.dir(h1Dom);
+        console.log(h1React);
+
+        // element lồng element
+        // DOM
+        const ulDom = document.createElement('ul');
+        const liDom1 = document.createElement('li');
+        liDom1.innerText = 'javascript';
+        const liDom2 = document.createElement('li');
+        liDom2.innerText = 'reactjs';
+        ulDom.appendChild(liDom1);
+        ulDom.appendChild(liDom2);
+        document.body.appendChild(ulDom);
+        // react
+        const ulReact = React.createElement(
+            'ul', 
+            null, 
+            React.createElement('li', null, 'javascript'),
+            React.createElement('li', null, 'reactjs')    
+        )
+        console.log(ulReact);
+    </script>
+</body>
+</html>
