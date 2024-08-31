@@ -15,20 +15,25 @@
     <!-- còn git là nơi lưu trữ source code  -->
     <!-- unpgk được hiểu như là ví dụ code bên Mỹ muốn về Việt Nam nó dowload cả nữa vòng trái đất rất là lâu
          nên unpgk nơi chứ các mấy chủ của các nước giúp các bạn tải nhanh hơn-->
+    <!-- React -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- ReactDOM -->
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <title>Document</title>
 </head>
 <body>
-
-    <script>
+    <div id="root"></div>
+    <script type="text/babel">
         /*
             lesson 2: react.createElement và DOM
             react.createElement() trả về chúng ta 1 đối  tượng là React element
             document.createElement() trả về chúng ta 1 đối tượng là DOM element 
         */
         //DOM
+        /*
         const titleName = document.createElement('h1');
         const h1Dom = document.createElement('h1');
         h1Dom.title = 'hello';
@@ -50,6 +55,7 @@
         const ulDom = document.createElement('ul');
         const liDom1 = document.createElement('li');
         liDom1.innerText = 'javascript';
+        liDom1.id = 'li-1';
         const liDom2 = document.createElement('li');
         liDom2.innerText = 'reactjs';
         ulDom.appendChild(liDom1);
@@ -59,10 +65,553 @@
         const ulReact = React.createElement(
             'ul', 
             null, 
-            React.createElement('li', null, 'javascript'),
+            React.createElement('li', {id: 'li-1' }, 'javascript'),
             React.createElement('li', null, 'reactjs')    
         )
         console.log(ulReact);
+        */
+        /*
+        lesson 3: react dom
+        react-navtive -> ios, android
+        */
+        // làm bài tập
+        /*
+        const postReact = React.createElement(
+        	'div',
+          {class:'post-item' },
+          React.createElement('h2',{title: 'Học react tại f8'}, 'Học reactjs'),
+           React.createElement('p',null,'Học react từ cơ bản đến nâng cao')
+        );
+        // get root element
+        const root = document.getElementById('root');
+
+        // render react dom
+        ReactDOM.render(postReact, root);
+        */
+        /*lesson 4: JSX -> javascript + xml 
+       
+
+            JSX Javascript XML
+
+            1. Luôn dùng React.createElement()? Vấn đề?
+
+            2. JSX? Bản demo trực tiếp: https://bit.ly/2V0IMN7
+
+            3. JSX không phải là HTML,
+
+            Cần có Javascript, Babel để dùng JSX
+
+            4.JSX và React-DOM?
+
+        */
+        /*
+        const postReact = (
+            <div className='post-item'>
+                <h2 title='Học react tại f8'>Học reactjs</h2>
+                <p>Học react là một nội một người</p>
+            </div>
+        );
+        const root = document.getElementById('root');
+        ReactDOM.render(postReact, root);
+        */
+        /*
+        lesson 5: Sử dụng JSX render Arrays
+        */
+        /*
+        const posts = [
+            {
+                id: 1,
+                title: 'Học react tại f8',
+                content: 'Học reactjs'
+            },
+            {
+                id: 2,
+                title: 'Học react tại f8',
+                content: 'Học reactjs'
+            },
+            {
+                id: 3,
+                title: 'Học react tại f8',
+                content: 'Học reactjs'
+            }   
+        ];
+        */
+        // bạn phải hiểu cái map nó trả về 1 cái mảng
+        /* 
+        const postReact = (
+            <ul>
+                
+                {posts.map((post) => (
+                    <li key={post.id}>
+                        <h2>{post.title}</h2>
+                        <p>{post.content}</p>
+                    </li>
+                ))}
+            </ul>   
+        );
+        const root = document.getElementById('root');
+        ReactDOM.render(postReact, root);
+        */
+        /*
+        lesson 6: React element types
+        khi dùng function tạo component người ta gọi là function component
+        khi dùng class tạo component người ta gọi là class component
+        và khi nào thì dùng class hay khi nào dùng function
+        từ khi có khái niệm hook sinh ra thì người ta dùng function component rất nhiều có khi dự án mới
+        100% dùng function component
+        và tùy thuộc theo tình huống nên như bạn cần kế thừa thì nên dùng class nó hỗ trợ từ khóa extends giúp bạn
+        trong việc code tối ưu hơn, nên tùy vào tình huống mà bạn sửa dụng
+
+        */
+        /*
+        function Header (){
+            return (
+                <h1>Header</h1>
+            )
+        }
+        function Content (){
+            return (
+                <h1>Content</h1>
+            )
+        }
+        //syntax class component
+        class Footer extends React.Component{
+            render(){
+                return (
+                    <h1>Footer</h1>
+                )
+            }
+        }
+        const app = (
+            <div className="wrapper">
+                <Header />
+                <Content />
+                <Footer />
+            </div>
+        )
+        const root = document.getElementById('root');
+        ReactDOM.render(app, root);
+        //bài tập
+        */
+        /*
+        function PostItem() {
+            return (
+                <div className="post-item">
+                    <h2 title="Học react tại f8">Học reactjs</h2>
+                    <p>Học react là một nội một người</p>
+                </div>
+            )
+        }
+        const app = (
+            <>
+                <div className="posts-list">
+                    <PostItem/>
+                    <PostItem/>
+                    <PostItem/>
+                </div>
+            </>
+        )
+        const root = document.getElementById('root');
+        ReactDOM.render(app, root);
+        */
+        /*
+        lesson 7: Props
+        Props cơ bản là đối số của componenet
+        Props là bất kỳ kiểu dữ liệu gì
+
+        */
+        /*
+        function PostItem(props) {
+            return (
+                <div className="post-item">
+                    <h2 title={props.title}>{props.title}</h2>
+                    <p>{props.content}</p>
+                </div>
+            )
+        }
+        const app = (
+            <>
+                <div className="posts-list">
+                    <PostItem title="Học react tại f8" content="Học reactjs"/>
+                    <PostItem title="Học react tại f8" content="Học reactjs"/>
+                    <PostItem title="Học react tại f8" content="Học reactjs"/>  
+                </div>
+            </>
+        )
+        const root = document.getElementById('root');
+        ReactDOM.render(app, root);
+        */
+        /*
+        bài tập
+        */
+        /*
+        const dataCourse = [
+        {
+          "id": 1,
+          "title": "F8 Stagging",
+          "url": "https://f8team.dev",
+          "allow_sub_domain": true,
+          "created_at": "2022-11-13T21:16:46.000000Z",
+          "updated_at": "2022-11-13T21:16:46.000000Z"
+        },
+        {
+          "id": 2,
+          "title": "F8 Facebook Group",
+          "url": "https://www.facebook.com/groups/f8official",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:17:57.000000Z",
+          "updated_at": "2022-11-13T21:17:57.000000Z"
+        },
+        {
+          "id": 3,
+          "title": "F8 Facebook Group by ID",
+          "url": "https://www.facebook.com/groups/649972919142215",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:19:58.000000Z",
+          "updated_at": "2022-11-13T21:19:58.000000Z"
+        },
+        {
+          "id": 4,
+          "title": "F8 Facebook Fanpage",
+          "url": "https://www.facebook.com/f8vnofficial",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:21:30.000000Z",
+          "updated_at": "2022-11-13T21:21:30.000000Z"
+        },
+        {
+          "id": 5,
+          "title": "F8 Youtube Channel",
+          "url": "https://www.youtube.com/c/F8VNOfficial",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:21:57.000000Z",
+          "updated_at": "2022-11-13T21:21:57.000000Z"
+        },
+        {
+          "id": 6,
+          "title": "Resources for Developers By Mozilla",
+          "url": "https://developer.mozilla.org",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:58:02.000000Z",
+          "updated_at": "2022-11-13T21:58:20.000000Z"
+        },
+        {
+          "id": 7,
+          "title": "F8 rút gọn URL",
+          "url": "https://short.f8team.dev",
+          "allow_sub_domain": true,
+          "created_at": "2023-06-01T17:44:00.000000Z",
+          "updated_at": "2023-06-01T17:44:00.000000Z"
+        },
+        {
+          "id": 8,
+          "title": "Google",
+          "url": "https://google.com",
+          "allow_sub_domain": true,
+          "created_at": "2023-06-05T15:25:46.000000Z",
+          "updated_at": "2023-06-05T15:25:46.000000Z"
+        },
+        {
+          "id": 9,
+          "title": "Github",
+          "url": "https://github.com",
+          "allow_sub_domain": true,
+          "created_at": "2023-06-06T08:58:51.000000Z",
+          "updated_at": "2023-06-06T08:58:51.000000Z"
+        },
+        {
+          "id": 10,
+          "title": "Github pages",
+          "url": "https://github.io",
+          "allow_sub_domain": true,
+          "created_at": "2023-06-06T22:11:00.000000Z",
+          "updated_at": "2023-06-06T22:11:00.000000Z"
+        },
+        {
+          "id": 11,
+          "title": "GG form",
+          "url": "https://forms.gle",
+          "allow_sub_domain": true,
+          "created_at": "2023-11-24T17:19:56.000000Z",
+          "updated_at": "2023-11-24T17:19:56.000000Z"
+        }
+      ];
+      // dataCoure
+      /*
+      function Coures (props) {
+        return (
+          <div>
+            <h1>{props.title}</h1>
+            <p>{props.url}</p>
+          </div>
+        )
+      } 
+        
+      // arrow function
+        const CourseItem = ({ course }) => (
+          <div>
+            <h1>{course.title}</h1>
+            <a href={course.url}>{course.url}</a><br/>
+            <a>{course.allow_sub_domain}</a><br/>
+            <a>{course.created_at}</a><br/>
+            <a>{course.updated_at}</a><br/>
+          </div>
+        )
+      const app = (
+        dataCourse.map((courses) => 
+            <CourseItem key={courses.id} 
+                course = {courses}
+            />
+        )
+      ) 
+      const root = document.getElementById('root');
+      ReactDOM.render(app, root);   
+      */
+      /*
+      lesson 8: Dom event
+      */
+      // callback
+      /*
+      const  RadomNumber = () =>{
+        return console.log(Math.random()); 
+      }
+      const App = () => {
+        return (
+          <div className="wrapper">
+                <button onClick={RadomNumber}>Click me</button>
+          </div>
+        )
+      }
+      const root = document.getElementById('root');
+      ReactDOM.render(<App />, root);
+      */
+      /* bài tập */
+      /*
+      const dataCourse = [
+        {
+          "id": 1,
+          "title": "F8 Stagging",
+          "url": "https://f8team.dev",
+          "allow_sub_domain": true,
+          "created_at": "2022-11-13T21:16:46.000000Z",
+          "updated_at": "2022-11-13T21:16:46.000000Z"
+        },
+        {
+          "id": 2,
+          "title": "F8 Facebook Group",
+          "url": "https://www.facebook.com/groups/f8official",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:17:57.000000Z",
+          "updated_at": "2022-11-13T21:17:57.000000Z"
+        },
+        {
+          "id": 3,
+          "title": "F8 Facebook Group by ID",
+          "url": "https://www.facebook.com/groups/649972919142215",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:19:58.000000Z",
+          "updated_at": "2022-11-13T21:19:58.000000Z"
+        },
+        {
+          "id": 4,
+          "title": "F8 Facebook Fanpage",
+          "url": "https://www.facebook.com/f8vnofficial",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:21:30.000000Z",
+          "updated_at": "2022-11-13T21:21:30.000000Z"
+        },
+        {
+          "id": 5,
+          "title": "F8 Youtube Channel",
+          "url": "https://www.youtube.com/c/F8VNOfficial",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:21:57.000000Z",
+          "updated_at": "2022-11-13T21:21:57.000000Z"
+        },
+        {
+          "id": 6,
+          "title": "Resources for Developers By Mozilla",
+          "url": "https://developer.mozilla.org",
+          "allow_sub_domain": false,
+          "created_at": "2022-11-13T21:58:02.000000Z",
+          "updated_at": "2022-11-13T21:58:20.000000Z"
+        },
+        {
+          "id": 7,
+          "title": "F8 rút gọn URL",
+          "url": "https://short.f8team.dev",
+          "allow_sub_domain": true,
+          "created_at": "2023-06-01T17:44:00.000000Z",
+          "updated_at": "2023-06-01T17:44:00.000000Z"
+        },
+        {
+          "id": 8,
+          "title": "Google",
+          "url": "https://google.com",
+          "allow_sub_domain": true,
+          "created_at": "2023-06-05T15:25:46.000000Z",
+          "updated_at": "2023-06-05T15:25:46.000000Z"
+        },
+        {
+          "id": 9,
+          "title": "Github",
+          "url": "https://github.com",
+          "allow_sub_domain": true,
+          "created_at": "2023-06-06T08:58:51.000000Z",
+          "updated_at": "2023-06-06T08:58:51.000000Z"
+        },
+        {
+          "id": 10,
+          "title": "Github pages",
+          "url": "https://github.io",
+          "allow_sub_domain": true,
+          "created_at": "2023-06-06T22:11:00.000000Z",
+          "updated_at": "2023-06-06T22:11:00.000000Z"
+        },
+        {
+          "id": 11,
+          "title": "GG form",
+          "url": "https://forms.gle",
+          "allow_sub_domain": true,
+          "created_at": "2023-11-24T17:19:56.000000Z",
+          "updated_at": "2023-11-24T17:19:56.000000Z"
+        }
+      ];
+        // function show title
+        const ShowTitle = (course) => {
+            alert(course.title);
+        }
+        // arrow function
+        const CourseItem = ({ course }) => (
+          <div>
+            <h1 onClick = {() => ShowTitle(course)}>{course.title}</h1>
+            <a href={course.url}>{course.url}</a><br/>
+            <a>{course.allow_sub_domain}</a><br/>
+            <a>{course.created_at}</a><br/>
+            <a>{course.updated_at}</a><br/>
+          </div>
+        )
+      const App = () => (
+        dataCourse.map((courses) => 
+            <CourseItem key={courses.id} 
+                course = {courses}
+            />
+        )
+      )
+      const root = document.getElementById('root');
+      ReactDOM.render(<App/>, root);   
+      */
+      /*
+      const Form = {
+        Input() {
+            return  <input/>
+        },
+        Checkbox() {
+            return  <input type="checkbox"/>
+        }
+
+      }
+      
+      const App = () => {
+        const type = 'Checkbox';
+        const type1 = 'Input';
+        const Component = Form[type];
+        const Component1 = Form[type1];
+        return (
+            <>
+                <Component/>
+                <Component1/>
+            </>
+        )
+      }
+
+      const root = document.getElementById('root');
+      ReactDOM.render(<App/>, root);
+      */
+      // 1 button có thể dùng link vừa là button bình thường
+      /*
+      const Button = ({title, href, onClick}) => {
+          let Component = 'button';        
+          const props = {};
+          if(href) {
+              Component = 'a';
+              props.href = href;
+          }
+          if(onClick) {
+              props.onClick = onClick
+          }
+          return (
+            <Component {...props}>{title}</Component>
+          )
+      }
+      const App = () => (
+        <Button 
+          title="Click me!" 
+          href="https://chatgpt.com/"
+          onClick={() => console.log('Click me!')}
+        />
+      )
+      const root = document.getElementById('root');
+      ReactDOM.render(<App/>, root);
+      */
+      /*
+      function Button({title, primary}) {
+        console.log(primary);
+        return(
+          <button>{title}</button>
+        )
+      }
+      
+      /*
+          lesson 9: props jsx
+          propName1 = "String value"
+          propName2 = {expression}
+          props defaultValue = true
+          spread/ rest props
+
+      */
+      /*
+      function Input({lable , ...inputProps }){
+        return (
+          <>
+            <lable>{lable}</lable><br/>
+            <input {...inputProps}/>
+          </>  
+        )
+      }
+
+      const App = () =>{
+        const title = 'Bạn cần xác nhận!';
+        
+        return (
+          <Input
+            lable = {title}
+            placeholder = "Enter your name ..."
+          />
+        )
+      }
+
+      const root = document.getElementById('root');
+      ReactDOM.render(<App/>, root);
+      */
+      const ListCar = ({data , children}) => {
+        console.log(children);
+        return (
+          <ul>
+            {data.map((item) => children(item)) }
+          </ul>
+        )
+      } 
+      function App () {
+        const datas = ['BMW', 'Audi', 'Mercedes'];
+        return (
+          <ListCar data={datas}> 
+            {(item) => <li>{item}</li>}
+          </ListCar>
+        )
+      }
+
+      const root = document.getElementById('root');
+      ReactDOM.render(<App/>, root);
     </script>
 </body>
 </html>

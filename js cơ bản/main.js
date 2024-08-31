@@ -131,5 +131,28 @@ lesson 6: Kiểu dữ liệu trong JavaScript
 // //array
 // var myArray = ['a', 'b', 'c'];
 // console.log(myArray);
+/*
+    Đố vui: để ôn kiến thức học
+*/
+// var results =  'a' && 'b' && 'c';
+// kết quả là gì tại sao
+// console.log(results);
+// var results =  'a' || 'b' || 'c';
+// kết quả là gì tại sao
+// console.log(results);
+/*
+lesson 7: Làm việc với mảng trong JavaScript
+*/
+var myArray = ['a', 'b', 'c'];
+console.log(myArray.join(';'));
+//pop xóa phần tử cuối mảng trả và trả về phần tử đã xóa
+myArray.pop();
+console.log(myArray);
+//push thêm phần tử vào cuối mảng
+myArray.push('c');
+console.log(myArray);
+
+
+
 
 
