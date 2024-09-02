@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const tabs = ['posts', 'comments', 'albums'];
+const tabs = ['posts', 'comments', 'albums' , 'photos', 'users', 'todos'];
 
 function Content() {
   const [title, setTitle] = useState('');
