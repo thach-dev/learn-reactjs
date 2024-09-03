@@ -7,6 +7,7 @@ function Content() {
   const [post, setPost] = useState([]);
   const [type, setType] = useState('posts');
   const [showGoToTop, setShowGoToTop] = useState(false);
+  const [widths, setWidths] = useState(window.innerWidth);
   
   useEffect(() => {
     console.log('type changed');
@@ -34,8 +35,15 @@ function Content() {
     }  
   },[]);
   
+  useEffect(() => {
+    const handleResize = () => setWidths(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
   return (
     <div>
+      <h1>{widths}</h1>
       {tabs.map(tab => (
         <button 
           key={tab}
