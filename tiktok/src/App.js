@@ -6,6 +6,8 @@ import Content from "./components/Content";
   1.Update Dom
   2.Call API
   3.Listen Dom Event
+  - Scroll
+  - Resize
   4.Cleanup
 */
 function App() {
@@ -18,6 +20,7 @@ function App() {
   // - Callback sẽ được gọi lại mỗi khi khi deps thay đổi
   // _____________________
   //1. Callback luôn được gọi sau khi component mounted
+  //2. Cleanup function luôn được gọi trước khi component unmounted
   const [show, setShow] = useState(false);
   return (
     
